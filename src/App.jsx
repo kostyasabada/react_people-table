@@ -27,7 +27,7 @@ const App = () => (
       <Route path="/home">
         <Redirect to="/" />
       </Route>
-      <Route path="/people">
+      <Route path="/people/:personSlug?">
         <PeoplePage />
       </Route>
       <Route path="*">
