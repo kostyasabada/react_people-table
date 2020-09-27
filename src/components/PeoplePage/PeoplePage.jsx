@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { getPeople } from '../../api';
+import { PeopleTable } from '../PeopleTable';
 
 export const PeoplePage = () => {
-  const [people, setPeople] = useState(null);
+  const [people, setPeople] = useState([]);
 
   useEffect(() => {
     getPeople()
-      .then(setPeople);
+      .then(result => setPeople(result
+        .map(person => (
+          {
+            ...person,
+            mother: result.find(any => any.name === person.motherName),
+            father: result.find(any => any.name === person.fatherName),
+          }
+        ))));
   }, []);
 
   // console.log(people);
@@ -14,18 +22,11 @@ export const PeoplePage = () => {
   return (
     <>
       <h1>People Page</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Sex</th>
-            <th>Born</th>
-            <th>Died</th>
-            <th>Mother</th>
-            <th>Father</th>
-          </tr>
-        </thead>
-      </table>
+      {people.length > 0 && (
+        <PeopleTable
+          people={people}
+        />
+      ) }
     </>
   );
 };
