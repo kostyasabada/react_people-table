@@ -8,7 +8,7 @@ import { PeoplePage } from './components/PeoplePage';
 const App = () => (
   <div className="App">
     <header>
-      <nav>
+      <nav className="nav">
         <ul>
           <li>
             <Link to="/">Home</Link>
