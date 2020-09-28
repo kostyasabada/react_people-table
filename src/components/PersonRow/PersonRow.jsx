@@ -4,7 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import classnames from 'classnames';
 // import { PersonName } from '../PersonName';
 
-export const PersonRow = ({ person }) => {
+export const PersonRow = ({ person, sortQuery }) => {
   const { name,
     sex,
     born,
@@ -14,7 +14,7 @@ export const PersonRow = ({ person }) => {
     slug,
     mother,
     father } = person;
-  // console.log(slug);
+
   const { personSlug } = useParams();
 
   return (
@@ -23,7 +23,11 @@ export const PersonRow = ({ person }) => {
         activePerson: personSlug === slug,
       })}
       >
-        <td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'name',
+          })}
+        >
           <NavLink
             className={classnames({
               'link-man': sex === 'm',
@@ -34,10 +38,32 @@ export const PersonRow = ({ person }) => {
             {name}
           </NavLink>
         </td>
-        <td>{sex}</td>
-        <td>{born}</td>
-        <td>{died}</td>
-        <td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'sex',
+          })}
+        >
+          {sex}
+        </td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'born',
+          })}
+        >
+          {born}
+        </td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'died',
+          })}
+        >
+          {died}
+        </td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'motherName',
+          })}
+        >
           {mother
             ? (
               <NavLink
@@ -50,7 +76,11 @@ export const PersonRow = ({ person }) => {
             : `${motherName || 'No info'}`
           }
         </td>
-        <td>
+        <td
+          className={classnames({
+            sortedCollumn: sortQuery === 'fatherName',
+          })}
+        >
           {father
             ? (
               <NavLink
@@ -80,4 +110,5 @@ PersonRow.propTypes = {
     mother: PropTypes.object,
     father: PropTypes.object,
   }).isRequired,
+  sortQuery: PropTypes.string.isRequired,
 };
