@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 
 import './App.scss';
 import { NotFoundPage } from './components/NotFoundPage';
@@ -9,12 +9,25 @@ const App = () => (
   <div className="App">
     <header>
       <nav className="nav">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
+        <ul className="nav__list">
+          <li className="nav__item">
+            <NavLink
+              className="nav__link"
+              activeClassName="nav__active"
+              to="/"
+              exact
+            >
+              Home
+            </NavLink>
           </li>
-          <li>
-            <Link to="/people">People</Link>
+          <li className="nav__item">
+            <NavLink
+              className="nav__link"
+              activeClassName="nav__active"
+              to="/people"
+            >
+              People
+            </NavLink>
           </li>
         </ul>
       </nav>

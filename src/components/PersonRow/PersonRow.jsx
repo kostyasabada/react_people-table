@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useLocation } from 'react-router-dom';
 import classnames from 'classnames';
 // import { PersonName } from '../PersonName';
 
@@ -16,6 +16,7 @@ export const PersonRow = ({ person, sortQuery }) => {
     father } = person;
 
   const { personSlug } = useParams();
+  const location = useLocation();
 
   return (
     <>
@@ -33,7 +34,10 @@ export const PersonRow = ({ person, sortQuery }) => {
               'link-man': sex === 'm',
               'link-woman': sex === 'f',
             })}
-            to={`/people/${slug}`}
+            to={{
+              pathname: `/people/${slug}`,
+              search: location.search,
+            }}
           >
             {name}
           </NavLink>
@@ -68,7 +72,10 @@ export const PersonRow = ({ person, sortQuery }) => {
             ? (
               <NavLink
                 className="link-woman"
-                to={`/people/${mother.slug}`}
+                to={{
+                  pathname: `/people/${mother.slug}`,
+                  search: location.search,
+                }}
               >
                 {motherName}
               </NavLink>
@@ -85,7 +92,10 @@ export const PersonRow = ({ person, sortQuery }) => {
             ? (
               <NavLink
                 className="link-man"
-                to={`/people/${father.slug}`}
+                to={{
+                  pathname: `/people/${father.slug}`,
+                  search: location.search,
+                }}
               >
                 {fatherName}
               </NavLink>
