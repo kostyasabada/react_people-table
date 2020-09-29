@@ -1,1 +1,65 @@
-// styles go here
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.nav {
+  height: 50px;
+  border-bottom: 3px solid black;
+
+  &__list {
+    display: flex;
+    margin: 0;
+    height: 100%;
+  }
+
+  &__item {
+    list-style: none;
+    height: 100%;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    line-height: 50px;
+    height: 100%;
+    padding: 0 10px;
+  }
+
+  &__active {
+    background-color: cornflowerblue;
+  }
+
+}
+
+.PeopleTable {
+  border-collapse: collapse;
+}
+
+.link-man {
+  color: blue;
+}
+
+.link-woman {
+  color: red;
+}
+
+.sortedCollumn {
+  background-color: rgb(224, 224, 224);
+}
+
+.activePerson {
+  background-color: yellowgreen;
+}
+
+.thead__cell {
+  cursor: pointer;
+
+  &_active {
+    background-color: darkgrey;
+  }
+
+  &:hover {
+    background-color: darkgray;
+  }
+}
